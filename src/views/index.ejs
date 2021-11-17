@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/index.css">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <ul class="nav-list">
+            <li> <a href="/">Home</a> </li>
+            <li> <a href="/user/<%=decoded.username%>">My accaunt</a> </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+
+      <ul class="posts-list" id="bijirbjir">
+        <% data.forEach(element => { %>
+        <li class="post">
+          <a class="post-nav" href="/user/<%=element.post_user%>"><%=`@${element.post_user}` %></a>
+          <p class="post-title"><%=element.post_title %></p>
+          <hr>
+          <%let hello = comments.filter((comment)=> comment.comment_post === element.post_id)  %>
+          <ul>
+            <% hello.forEach(el => { %>
+              <li>
+                <a href="/user/<%=el.comment_user%>"><%=`@${el.comment_user}`%></a>
+                <p><%=el.comment_title%></p>
+              </li>
+            <% }) %>
+          </ul>
+          <form action="/comment/<%=element.post_id%>" method="post">
+            <input type="text" name="title" required>
+            <button type="submit">comment</button>
+          </form>
+          <% }) %>
+      
+      </ul>
+    </div>
+    <script>
+    </script>
+  </body>
+</html>

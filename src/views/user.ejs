@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/index.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+          <nav>
+            <ul class="nav-list">
+              <li> <a href="/">Home</a> </li>
+              <li> <a href="/user/<%=found[0].user_name%>">My accaunt</a> </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    <div class="container">
+        <div class="user">
+            <div class="user-name">
+                <h1 class="user__username"><%=found[0].user_name %></h1>
+            </div>
+        </div>
+        <div class="wrapper">
+            <ul id="bijirbjir" class="posts-list">
+                <% if (postsFound?.length > 0) { %>
+                    <% postsFound.forEach(element => { %>
+                  <li class="post">
+                    <a class="post-nav" href="/user/<%=element.post_user%>"><%=`@${element.post_user}` %></a>
+                    <p class="post-title"><%=element.post_title %></p>
+                    <% if(found.current) { %>
+                    <button class="button" data-id="<%=element.post_id %>">delete</button>
+                    <% } %>
+                    <% }) %>
+                    <% } %>
+                  </li>
+            
+            </ul>
+            <% if (found.current) { %>
+                <form  action="/user" method="post" > <input type="text" name="title" required>  <button type="submit">submit</button> </form>
+            <%} %>
+        </div>
+          
+    </div>
+    
+
+</body>
+</html>

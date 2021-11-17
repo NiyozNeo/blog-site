@@ -50,6 +50,6 @@ app.post("/comment/:id",async (req, res) => {
   res.status(200).redirect('/');
 })
 
-app.listen(serverPort, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server started at http://localhost:${serverPort}`);
 });
